@@ -1,17 +1,20 @@
 'use strict';
 
 function SE_questions_check() {
-    var copyright = $('#copyright'), link = $('a', 'li.youarehere');
-    return (copyright.length &&
-            copyright.html().indexOf('stack exchange inc') != -1 &&
-            link.length && 
-            link.attr('href').indexOf('/questions') != -1 &&
-            $('.question-summary').length);
+    var copy = $('#copyright'), link = $('a', 'li.youarehere'), 
+        qcount = $('.summarycount', '#sidebar');
+    return (copy.length &&
+            copy.html().indexOf('stack exchange inc') != -1 &&
+            ((link.length &&
+              link.attr('href').indexOf('/questions') != -1 &&
+              qcount.length) ||
+             document.location.pathname == '/'));
 }
 
 if (SE_questions_check()) {
+    console.log('Notifications about new questions have been enabled');
     if (!("Notification" in window)) {
-        console.log("Your browser does not seem to support desktop notifications");
+        console.log("Your browser does not support desktop notifications");
     } else if (Notification.permission === 'default') {
         Notification.requestPermission();
     }
