@@ -13,6 +13,6 @@
    "name": "Stack Exchange questions notifications",
    "permissions": ["notifications"],
    "update_url": "https://clients2.google.com/service/update2/crx",
-   "version": "1.5.3",
+   "version": "1.6",
    "web_accessible_resources": ["sound.wav", "icon_128.png"]
 }
