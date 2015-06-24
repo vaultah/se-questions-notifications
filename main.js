@@ -1,10 +1,5 @@
 'use strict';
 
-if (!("Notification" in window)) {
-    console.log("Your browser does not seem to support desktop notifications");
-} else if (Notification.permission === 'default') {
-    Notification.requestPermission();
-}
 
 function SE_questions_check() {
     var copyright = $('#copyright'), link = $('a', 'li.youarehere');
@@ -15,6 +10,12 @@ function SE_questions_check() {
 }
 
 if (SE_questions_check()) {
+    if (!("Notification" in window)) {
+        console.log("Your browser does not seem to support desktop notifications");
+    } else if (Notification.permission === 'default') {
+        Notification.requestPermission();
+    }
+
     function make_box(tags) {
         var box_cls = 'question-tags-popup', queue_cls = 'box-queue',
             popups = $('.' + box_cls), new_box;
