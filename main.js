@@ -2,7 +2,7 @@
 
 if (!("Notification" in window)) {
     console.log("Your browser does not seem to support desktop notifications");
-} else if (Notification.permission !== 'denied') {
+} else if (Notification.permission === 'default') {
     Notification.requestPermission();
 }
 
