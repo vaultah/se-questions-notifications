@@ -1,12 +1,12 @@
 'use strict';
 
-
 function SE_questions_check() {
     var copyright = $('#copyright'), link = $('a', 'li.youarehere');
     return (copyright.length &&
             copyright.html().indexOf('stack exchange inc') != -1 &&
             link.length && 
-            link.attr('href').indexOf('/questions') != -1);
+            link.attr('href').indexOf('/questions') != -1 &&
+            $('.question-summary').length);
 }
 
 if (SE_questions_check()) {
@@ -30,31 +30,32 @@ if (SE_questions_check()) {
         // 5 boxes at most
         if (popups.length >= 5)
             popups.last().remove();
-
     }
 
     var audio = new Audio(chrome.extension.getURL('sound.wav'));
 
     setInterval(function() {
-        var tags, notification, count, children, title, nf = $('.new-post-activity');
-        // Can be empty. Doing nothing if it is.
+        var nf = $('.new-post-activity');
+        // Can be empty
         if (nf.length) {
             // Play sound immediately
             audio.play();
             nf.trigger('click');
             // Number of new questions
-            count = parseInt(nf.text());
+            var count = parseInt(nf.text());
             // `count` questions from the top
-            children = $('.question-summary').slice(0, count);
-            // Iterate over children in reverse order
-            $(children.get().reverse()).each(function(i, v) {
-                // Fetch all classes remove the first one (`tags`)
-                tags = $(v).find('.tags').find('a').get().map(function (tag) {
+            var summaries = $('.question-summary').slice(0, count);
+            // Iterate in reverse order
+            $(summaries.get().reverse()).each(function(i, v) {
+                var tags = $(v).find('.tags').find('a').get().map(function (tag) {
                     return tag.text;
                 });
-                title = $('h3', v);
-                if (Notification.permission === 'granted') {
-                    notification = new Notification(title.text(), {
+                // Display the box
+                make_box(tags);
+                // Emit desktop notification if we can
+                if ("Notification" in window && Notification.permission === 'granted') {
+                    var title = $('h3', v);
+                    var notification = new Notification(title.text(), {
                         body: 'Tags: ' + tags.join(' '),
                         icon: chrome.extension.getURL('icon_128.png')
                     });
@@ -65,8 +66,6 @@ if (SE_questions_check()) {
                         window.open(title.find('a').attr('href'), '_blank');
                     };
                 }
-                // Finally, display it
-                make_box(tags);
             });
         }
     }, 1000);
