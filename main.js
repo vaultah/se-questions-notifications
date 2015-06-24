@@ -50,8 +50,8 @@ if (SE_questions_check()) {
             var summaries = $('.question-summary').slice(0, count);
             // Iterate in reverse order
             $(summaries.get().reverse()).each(function(i, v) {
-                var tags = $(v).find('.tags').find('a').get().map(function (tag) {
-                    return tag.text;
+                var tags = $(v).find('.tags').find('a').get().map(function(tag) {
+                    return $(tag).text();
                 });
                 // Display the box
                 make_box(tags);
