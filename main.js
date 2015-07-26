@@ -63,7 +63,7 @@ if (SE_questions_check()) {
                         icon: chrome.extension.getURL('icon_128.png')
                     });
                     notification.onshow = function () {
-                        setTimeout(function() { notification.close () }, 7500);
+                        setTimeout(function() { notification.close () }, 10000);
                     };
                     notification.onclick = function () {
                         window.open(title.find('a').attr('href'), '_blank');
