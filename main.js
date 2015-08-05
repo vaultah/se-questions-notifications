@@ -4,7 +4,7 @@ function SE_questions_check() {
     var copy = $('#copyright'), link = $('a', 'li.youarehere'), 
         qcount = $('.summarycount', '#sidebar');
     return (copy.length &&
-            copy.html().indexOf('stack exchange inc') != -1 &&
+            copy.html().indexOf('Stack Exchange Inc') != -1 &&
             ((link.length &&
               link.attr('href').indexOf('/questions') != -1 &&
               qcount.length) ||
