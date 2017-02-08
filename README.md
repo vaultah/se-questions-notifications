@@ -6,4 +6,4 @@ Stack Exchange sites perform question filtering in browser, and I don't want to 
 
 For each new question this extension plays a notification sound and displays a clickable desktop notification. Clicking on the desktop notification will open a new tab with the corresponding question.
 
-This extension is licensed under MIT and is available on GitHub and Chrome Web Store.
+This extension is licensed under MIT and is available on GitHub and [Chrome Web Store](https://chrome.google.com/webstore/detail/stack-exchange-questions/dbikeaiagnndkbbeeimonfahdmpfgiib).
