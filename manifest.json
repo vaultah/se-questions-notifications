@@ -1,7 +1,7 @@
 {
     "content_scripts": [{
         "css": ["styles.css"],
-        "js": ["jquery-2.1.1.min.js", "main.js"],
+        "js": ["jquery-3.1.1.min.js", "main.js"],
         "matches": [
             "*://*.stackexchange.com/*",
             "*://*.stackoverflow.com/*",
@@ -34,6 +34,6 @@
     "name": "Stack Exchange questions notifications",
     "permissions": ["notifications"],
     "update_url": "https://clients2.google.com/service/update2/crx",
-    "version": "1.6.3",
+    "version": "1.7.0",
     "web_accessible_resources": ["sound.wav", "icon_128.png"]
 }
